@@ -43,6 +43,14 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  use({
+    'projekt0n/github-nvim-theme', tag = 'v0.0.7',
+    -- or                            branch = '0.0.x'
+    config = function()
+      require('github-theme').setup({});
+      vim.cmd('colorscheme github_dark_default');
+    end
+  })
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -51,10 +59,10 @@ require('packer').startup(function(use)
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
-    config = function()
-        require("rose-pine").setup()
-        vim.cmd('colorscheme rose-pine')
-    end
+    -- config = function()
+    --     require("rose-pine").setup()
+    --     vim.cmd('colorscheme rose-pine')
+    -- end
   })
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
