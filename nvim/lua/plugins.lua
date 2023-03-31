@@ -43,6 +43,9 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  use 'nvim-lua/plenary.nvim'
+  use 'ThePrimeagen/harpoon'
+
   use({
     'projekt0n/github-nvim-theme', tag = 'v0.0.7',
     -- or                            branch = '0.0.x'
