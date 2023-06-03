@@ -18,7 +18,7 @@ fColor = "#ea9a97"
 
 nColor = "#232136"
 
-myLayout = avoidStruts (tiled ||| Full ||| ThreeColMid 1 1 1)
+myLayout = avoidStruts (tiled ||| Full)
   where
     tiled = Tall nmaster delta ratio
     nmaster = 1

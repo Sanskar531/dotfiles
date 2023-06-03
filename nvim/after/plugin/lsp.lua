@@ -64,11 +64,10 @@ local servers = {
   angularls = {
     cmd = ngls_cmd,
   },
-  pyright = {},
+  ruff_lsp = {},
   rust_analyzer = {},
   svelte = {},
   prismals = {},
-  hls = {},
   tsserver = {
     root_dir = [[util.root_pattern("package.json")]]
   },

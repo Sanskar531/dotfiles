@@ -17,15 +17,6 @@ require('packer').startup(function(use)
     },
   }
 
-  use {
-	"windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
-
-  use 'frenzyexists/aquarium-vim'
-
-  use({ "elgiano/nvim-treesitter-angular", branch = "topic/jsx-fix" })
-
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -38,20 +29,14 @@ require('packer').startup(function(use)
     end,
   }
 
-  use { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
-
   use 'nvim-lua/plenary.nvim'
   use 'ThePrimeagen/harpoon'
 
   use({
-    'projekt0n/github-nvim-theme', tag = 'v0.0.7',
-    -- or                            branch = '0.0.x'
+    'projekt0n/github-nvim-theme',
     config = function()
       require('github-theme').setup({});
-      vim.cmd('colorscheme github_dark_default');
+      vim.cmd.colorscheme "github_dark_high_contrast"
     end
   })
   -- Git related plugins
@@ -68,10 +53,10 @@ require('packer').startup(function(use)
     -- end
   })
 
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
   use 'folke/zen-mode.nvim'
   use 'mbbill/undotree'
 
@@ -81,7 +66,10 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-  use 'lewis6991/impatient.nvim'
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

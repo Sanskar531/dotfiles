@@ -1,7 +1,8 @@
 require("plugins");
 require("set");
 require("remap");
-require("impatient");
+
+vim.loader.enable();
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
