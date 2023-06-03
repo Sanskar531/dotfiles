@@ -14,7 +14,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.StackSet
 import XMonad.Layout.ThreeColumns
 
-fColor = "#ea9a97"
+fColor = "#ff8182"
 
 nColor = "#232136"
 
