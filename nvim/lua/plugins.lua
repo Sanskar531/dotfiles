@@ -10,7 +10,7 @@ require('packer').startup(function(use)
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      {'j-hui/fidget.nvim', branch = "legacy"},
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
@@ -39,20 +39,21 @@ require('packer').startup(function(use)
       vim.cmd.colorscheme "github_dark_high_contrast"
     end
   })
+
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    -- config = function()
-    --     require("rose-pine").setup()
-    --     vim.cmd('colorscheme rose-pine')
-    -- end
-  })
-
+  -- use({
+  --   'rose-pine/neovim',
+  --   as = 'rose-pine',
+  --   config = function()
+  --       require("rose-pine").setup()
+  --       vim.cmd('colorscheme rose-pine')
+  --   end
+  -- })
+  --
   use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines

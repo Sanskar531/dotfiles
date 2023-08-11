@@ -14,9 +14,9 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.StackSet
 import XMonad.Layout.ThreeColumns
 
-fColor = "#ff8182"
+fColor = "#d73a49"
 
-nColor = "#232136"
+nColor = "#586069"
 
 myLayout = avoidStruts (tiled ||| Full)
   where
@@ -29,6 +29,7 @@ myStartupHook = do
     spawn "~/.config/polybar/launch.sh"
     spawn "~/.fehbg &"
     spawnOnce "xrandr -s 3440x1440 -r 120"
+    spawnOnce "picom -b --experimental-backends --config ~/.config/picom/picom.conf &"
 
 main = do
   xmonad $
@@ -36,7 +37,7 @@ main = do
       ewmh
         def
           { normalBorderColor = nColor,
-            borderWidth = 3,
+            borderWidth = 5,
             focusedBorderColor = fColor,
             layoutHook = spacingWithEdge 10 myLayout,
             manageHook = manageSpawn,
