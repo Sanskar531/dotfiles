@@ -15,6 +15,8 @@ end
 
 # Always refetch neovim configs
 rm -rf ./nvim
-cp -r ~/.config/nvim/ ./nvim
 rm ./starship.toml
+rm ./.tmux.conf
+cp -r ~/.config/nvim/ ./nvim
 cp ~/.config/starship.toml .
+cp ~/.tmux.conf .
