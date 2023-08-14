@@ -37,7 +37,7 @@ main = do
       ewmh
         def
           { normalBorderColor = nColor,
-            borderWidth = 5,
+            borderWidth = 3,
             focusedBorderColor = fColor,
             layoutHook = spacingWithEdge 10 myLayout,
             manageHook = manageSpawn,
