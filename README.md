@@ -14,7 +14,7 @@ These are my dotfiles. I mainly use nvim as my editor, Xmoand as my wm, tmux for
     - [x] git
 ---
 
-License:
+# License:
 
 Copyright 2023 Sanskar Gauchan
 
