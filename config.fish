@@ -1,13 +1,14 @@
 # Path variables for unix
 switch (uname)
   case Linux
-    set PATH $PATH:/home/`echo $USER`/.yarn/bin
-    set PATH $PATH:/usr/local/go/bin
-    set PATH $PATH:/home/`echo $USER`/go/bin
+    fish_add_path /home/(whoami)/.yarn/bin
+    fish_add_path /usr/local/go/bin
+    fish_add_path /home/(whoami)/go/bin
+    fish_add_path /home/(whoami)/.nvm/**/bin/
   case Darwin
     # Update path for fish
     # Bins are installed using brew for mac os configs
-    set PATH $PATH:/opt/homebrew/bin
+    fish_add_path /opt/homebrew/bin
 end
 
 # Start zoxide and starship
