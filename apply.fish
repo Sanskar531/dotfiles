@@ -14,9 +14,11 @@ switch (uname)
     rm -rf ~/.config/picom
     rm -rf ~/.config/polybar
     rm ~/.xmonad/xmonad.hs
+    rm ~/.xinitrc
 
     # Apply new configs
     cp ./xmonad.hs ~/.xmonad/
     cp -r ./polybar ~/.config
     cp ./picom ~/.config
+    cp ./.xinitrc ~/
 end

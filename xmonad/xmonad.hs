@@ -29,7 +29,7 @@ myStartupHook = do
     spawn "~/.config/polybar/launch.sh"
     spawn "~/.fehbg &"
     spawnOnce "xrandr -s 3440x1440 -r 120"
-    spawnOnce "picom -b --experimental-backends --config ~/.config/picom/picom.conf &"
+    spawnOnce "picom -b --experimental-backends --config ~/.config/picom/picom.conf"
 
 main = do
   xmonad $

@@ -21,3 +21,9 @@ bind -M insert \cn accept-autosuggestion
 bind -M default \cn accept-autosuggestion
 set fish_greeting
 bind -M default A 'set fish_bind_mode insert; commandline -f end-of-buffer'
+
+if status is-login
+  if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+    exec startx
+  end
+end
