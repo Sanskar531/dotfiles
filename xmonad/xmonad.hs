@@ -29,7 +29,7 @@ myStartupHook = do
     spawn "~/.config/polybar/launch.sh"
     spawn "~/.fehbg &"
     spawnOnce "xrandr -s 3440x1440 -r 120"
-    spawnOnce "picom -b --experimental-backends --config ~/.config/picom/picom.conf"
+    spawnOnce "picom -b --config ~/.config/picom/picom.conf"
 
 main = do
   xmonad $
@@ -44,7 +44,6 @@ main = do
             terminal = "kitty",
             startupHook = myStartupHook
           }
-        `additionalKeys` [ ((mod1Mask, xK_c), spawn "google-chrome"),
-                           ((mod1Mask, xK_f), spawn "firefox"),
+        `additionalKeys` [ ((mod1Mask, xK_f), spawn "firefox"),
                            ((mod1Mask, xK_s), unGrab *> spawn "scrot -s ~/screenshots/%b%d::%H%M%S.png")
                          ]
