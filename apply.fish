@@ -11,10 +11,10 @@ cp ./.tmux.conf ~/
 switch (uname)
   case Linux:
     # Remove all existing configs
-    rm -rf ~/.config/picom
-    rm -rf ~/.config/polybar
-    rm ~/.xmonad/xmonad.hs
-    rm ~/.xinitrc
+    rm -rf ~/.config/picom 2> /dev/null
+    rm -rf ~/.config/polybar 2> /dev/null
+    rm ~/.xmonad/xmonad.hs 2> /dev/null
+    rm ~/.xinitrc 2> /dev/null
 
     # Apply new configs
     cp ./xmonad.hs ~/.xmonad/
