@@ -1,5 +1,7 @@
 - name: Install Mac dependencies
   command: brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai
+  args:
+    warn: false
 - name: Symlink skhd
   file:
     src: '{{ ansible_env.HOME }}/dotfiles/skhd'

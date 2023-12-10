@@ -1,0 +1,26 @@
+- name: Install arch dependencies
+  ansible.builtin.package:
+    - iwd
+    - ly
+    - polybar
+    - xmonad
+    - xmonad-contrib
+    - picom
+    - scrot
+    - feh
+    - ffmpeg
+- name: Symlink X11
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/.xinitrc'
+    dest: '{{ ansible_env.HOME }}/.xinitrc'
+    state: link
+- name: Symlink picom
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/picom'
+    dest: '{{ ansible_env.HOME }}/.config/picom'
+    state: link
+- name: Symlink Xmonad
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/xmonad'
+    dest: '{{ ansible_env.HOME }}/.xmonad'
+    state: link
