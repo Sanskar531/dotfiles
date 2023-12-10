@@ -5,6 +5,12 @@ switch (uname)
     fish_add_path /usr/local/go/bin
     fish_add_path /home/(whoami)/go/bin
     fish_add_path /home/(whoami)/.nvm/**/bin/
+
+    if status is-login
+      if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx
+      end
+    end
   case Darwin
     # Update path for fish
     # Bins are installed using brew for mac os configs
@@ -22,9 +28,3 @@ bind -M insert \cn accept-autosuggestion
 bind -M default \cn accept-autosuggestion
 set fish_greeting
 bind -M default A 'set fish_bind_mode insert; commandline -f end-of-buffer'
-
-if status is-login
-  if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-    exec startx
-  end
-end

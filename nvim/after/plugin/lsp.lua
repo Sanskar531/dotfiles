@@ -68,9 +68,11 @@ local servers = {
   rust_analyzer = {},
   svelte = {},
   prismals = {},
+  pyright = {},
   tsserver = {
     root_dir = [[util.root_pattern("package.json")]]
   },
+  java_language_server = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
