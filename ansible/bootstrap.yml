@@ -6,7 +6,6 @@
       git:
         repo: 'https://github.com/Sanskar531/dotfiles.git'
         dest: '{{ ansible_env.HOME }}/dotfiles'
-        version: main
     - name: Install packages
       ansible.builtin.package:
         name:
@@ -25,6 +24,9 @@
           - starship
           - fish
         state: present
+    - name: MacOS Dependencies
+      include_tasks: ./mac.yml
+      when: ansible_facts['os_family'] == 'Darwin'
     - name: Install additional packages for Linux
       ansible.builtin.package:
         name:
@@ -48,20 +50,10 @@
         src: '{{ ansible_env.HOME }}/dotfiles/config.fish'
         dest: '{{ ansible_env.HOME }}/.config/fish/config.fish'
         state: link
-    - name: Symlink yabai
-      file:
-        src: '{{ ansible_env.HOME }}/dotfiles/yabai'
-        dest: '{{ ansible_env.HOME }}/.config/yabai'
-        state: link
     - name: Symlink nvim
       file:
         src: '{{ ansible_env.HOME }}/dotfiles/nvim'
         dest: '{{ ansible_env.HOME }}/.config/nvim'
-        state: link
-    - name: Symlink skhd
-      file:
-        src: '{{ ansible_env.HOME }}/dotfiles/skhd'
-        dest: '{{ ansible_env.HOME }}/.config/skhd'
         state: link
     - name: Symlink alacritty
       file:

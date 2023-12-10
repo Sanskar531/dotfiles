@@ -6,4 +6,4 @@ switch (uname)
     brew install ansible
 end
 
-ansible-playbook -vv -i ./hosts.ini ./dotfiles.yml
+ansible-playbook -vv -i ./ansible/hosts.ini ./ansible/dotfiles.yml

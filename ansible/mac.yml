@@ -1,0 +1,12 @@
+- name: Install Mac dependencies
+  command: brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai
+- name: Symlink skhd
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/skhd'
+    dest: '{{ ansible_env.HOME }}/.config/skhd'
+    state: link
+- name: Symlink yabai
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/yabai'
+    dest: '{{ ansible_env.HOME }}/.config/yabai'
+    state: link
