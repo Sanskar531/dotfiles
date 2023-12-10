@@ -9,7 +9,7 @@ cp ./starship.toml ~/.config/
 cp ./.tmux.conf ~/
 
 switch (uname)
-  case Linux:
+  case Linux
     # Remove all existing configs
     rm -rf ~/.config/picom 2> /dev/null
     rm -rf ~/.config/polybar 2> /dev/null
@@ -21,4 +21,10 @@ switch (uname)
     cp -r ./polybar ~/.config
     cp ./picom ~/.config
     cp ./.xinitrc ~/
+  case Darwin
+    rm ~/.config/yabai 2> /dev/null
+    rm ~/.config/skhd 2> /dev/null
+
+    cp -r ./skhd ~/.config/
+    cp -r ./yabai ~/.config/
 end

@@ -1,0 +1,20 @@
+# focus window
+cmd - j : yabai -m window --focus prev || yabai -m window --focus last
+cmd - k : yabai -m window --focus next || yabai -m window --focus first
+
+# swap managed window
+cmd - return : yabai -m window --swap west 
+
+cmd + shift - c : yabai -m window --close
+
+# layouts
+cmd - space : yabai -m config layout stack
+cmd - space : yabai -m window --toggle split
+
+cmd + shift - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - c : open -a "Google Chrome" -n
+
+# float / unfloat window and center on screen
+cmd + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+# in bash
+cmd - s : screencapture -iU `date -U`

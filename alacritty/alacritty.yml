@@ -24,9 +24,6 @@ colors:
     background: '0x0a0c10'
     foreground: '0xf0f3f6'
 
-  # Cursor colors
-  #
-  # These will only be used when the `custom_cursor_colors` field is set to `true`.
   cursor:
     text: '0x0a0c10'
     cursor: '0xf0f3f6'

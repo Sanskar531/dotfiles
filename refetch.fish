@@ -11,6 +11,12 @@ switch (uname)
     cp -r ~/.config/polybar/ .
     cp ~/.xmonad/xmonad.hs ./xmonad/
     cp ~/.xinitrc .
+  case Darwin
+    rm -rf ./skhd 2> /dev/null
+    rm -rf ./yabai 2> /dev/null
+
+    cp -r ~/.config/yabai .
+    cp -r ~/.config/skhd .
 end
 
 # Always refetch neovim configs
