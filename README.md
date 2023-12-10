@@ -5,13 +5,12 @@ These are my dotfiles. I mainly use nvim as my editor, Xmoand as my wm, tmux for
 ---
 
 ## Things left to do:
-- Keep track of cli tools:
-    - [x] z
-    - [x] exa
-    - [x] ripgrep
-    - [x] tmux
-    - [x] nvim
-    - [x] git
+[] Start yabai and skhd on boot using brew
+[] Add more skhd shortcuts for:
+    [] Cycling layouts
+    [] Logging out
+    [] Cycling in different layouts
+[] Add Sketchybar
 ---
 
 # License:
