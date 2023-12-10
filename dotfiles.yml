@@ -5,13 +5,13 @@
     - name: Clone repo
       git:
         repo: 'https://github.com/Sanskar531/dotfiles.git'
-        dest: '~/dotfiles'
+        dest: '{{ ansible_env.HOME }}/dotfiles'
         version: main
-      become: no
     - name: Install packages
       ansible.builtin.package:
         name:
           - neovim
+          - tmux
           - zoxide
           - exa
           - ripgrep
@@ -22,6 +22,8 @@
           - fzf
           - hyperfine
           - neofetch
+          - starship
+          - fish
         state: present
     - name: Install additional packages for Linux
       ansible.builtin.package:
@@ -29,13 +31,48 @@
           - scrot
           - feh
           - ffmpeg
-          - neofetch
+        state: present
       when: ansible_facts['distribution'] == 'Archlinux'
     - name: Install Packer for neovim
       git:
         repo: 'https://github.com/wbthomason/packer.nvim'
-        dest: '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
+        dest: '{{ ansible_env.HOME }}/.local/share/nvim/site/pack/packer/start/packer.nvim'
         depth: 1
+    - name: Symlink starship
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/starship.toml'
+        dest: '{{ ansible_env.HOME }}/.config/starship.toml'
+        state: link
+    - name: Symlink fish
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/config.fish'
+        dest: '{{ ansible_env.HOME }}/.config/fish/config.fish'
+        state: link
+    - name: Symlink yabai
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/yabai'
+        dest: '{{ ansible_env.HOME }}/.config/yabai'
+        state: link
+    - name: Symlink nvim
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/nvim'
+        dest: '{{ ansible_env.HOME }}/.config/nvim'
+        state: link
+    - name: Symlink skhd
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/skhd'
+        dest: '{{ ansible_env.HOME }}/.config/skhd'
+        state: link
+    - name: Symlink alacritty
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/alacritty'
+        dest: '{{ ansible_env.HOME }}/.config/alacritty'
+        state: link
+    - name: Symlink tmux
+      file:
+        src: '{{ ansible_env.HOME }}/dotfiles/.tmux.conf'
+        dest: '{{ ansible_env.HOME }}/.tmux.conf'
+        state: link
     - name: Install neovim configs
       ansible.builtin.shell:
-        cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+        cmd: is_bootstrap=true nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
