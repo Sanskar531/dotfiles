@@ -1,0 +1,41 @@
+- name: Manage Dotfiles
+  hosts: localhost
+  become: no
+  tasks:
+    - name: Clone repo
+      git:
+        repo: 'https://github.com/Sanskar531/dotfiles.git'
+        dest: '~/dotfiles'
+        version: main
+      become: no
+    - name: Install packages
+      ansible.builtin.package:
+        name:
+          - neovim
+          - zoxide
+          - exa
+          - ripgrep
+          - git
+          - fd
+          - jq
+          - yq
+          - fzf
+          - hyperfine
+          - neofetch
+        state: present
+    - name: Install additional packages for Linux
+      ansible.builtin.package:
+        name:
+          - scrot
+          - feh
+          - ffmpeg
+          - neofetch
+      when: ansible_facts['distribution'] == 'Archlinux'
+    - name: Install Packer for neovim
+      git:
+        repo: 'https://github.com/wbthomason/packer.nvim'
+        dest: '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
+        depth: 1
+    - name: Install neovim configs
+      ansible.builtin.shell:
+        cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
