@@ -1,6 +1,6 @@
 # focus window
-cmd - j : yabai -m window --focus prev || yabai -m window --focus last
-cmd - k : yabai -m window --focus next || yabai -m window --focus first
+cmd - j : fish /Users/$(whoami)/.config/skhd/window_cycling_backward.fish
+cmd - k : fish /Users/$(whoami)/.config/skhd/window_cycling_forward.fish
 
 # swap managed window
 cmd - return : yabai -m window --swap west 
@@ -8,8 +8,7 @@ cmd - return : yabai -m window --swap west
 cmd + shift - c : yabai -m window --close
 
 # layouts
-cmd - space : yabai -m config layout stack
-cmd - space : yabai -m window --toggle split
+cmd - space : fish /Users/$(whoami)/.config/skhd/layout_cycling.fish
 
 cmd + shift - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 cmd - c : open -a "Google Chrome" -n

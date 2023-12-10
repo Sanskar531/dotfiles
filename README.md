@@ -7,9 +7,9 @@ These are my dotfiles. I mainly use nvim as my editor, Xmoand as my wm, tmux for
 ## Things left to do:
 - [ ] Start yabai and skhd on boot using brew
 - [ ] Add more skhd shortcuts for:
-    - [ ] Cycling layouts
+    - [x] Cycling layouts
     - [ ] Logging out
-    - [ ] Cycling in different layouts
+    - [x] Cycling in different layouts
 - [ ] Add Sketchybar
 
 ---
