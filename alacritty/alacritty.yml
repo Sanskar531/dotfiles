@@ -49,3 +49,6 @@ colors:
     magenta: '0xcb9eff'
     cyan: '0x39c5cf'
     white: '0xd9dee3'
+
+shell:
+  program: /opt/homebrew/bin/fish

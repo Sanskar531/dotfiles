@@ -28,3 +28,13 @@ bind -M insert \cn accept-autosuggestion
 bind -M default \cn accept-autosuggestion
 set fish_greeting
 bind -M default A 'set fish_bind_mode insert; commandline -f end-of-buffer'
+
+function nvm
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+pyenv init - | source
+
+status --is-interactive; and pyenv virtualenv-init - | source

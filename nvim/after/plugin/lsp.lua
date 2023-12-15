@@ -61,18 +61,12 @@ local ngls_cmd = {
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  angularls = {
-    cmd = ngls_cmd,
-  },
   ruff_lsp = {},
   rust_analyzer = {},
-  svelte = {},
-  prismals = {},
   pyright = {},
   tsserver = {
     root_dir = [[util.root_pattern("package.json")]]
   },
-  java_language_server = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
