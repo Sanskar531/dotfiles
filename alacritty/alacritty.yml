@@ -16,8 +16,6 @@ font:
     style: Bold Italic
   size: 20
 
-# (Github Dark High Contrast) Colors for Alacritty
-
 colors:
   # Default colors
   primary:
@@ -52,5 +50,14 @@ colors:
 
 shell:
   program: /opt/homebrew/bin/fish
+
 env:
   TERM: xterm-256color
+
+window:
+  dynamic_padding: true
+  padding:
+    x: 0
+    y: 0
+
+  decorations: buttonless
