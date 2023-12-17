@@ -1,16 +1,18 @@
+# Uses bash
+
 # focus window
 cmd - j : bash /Users/$(whoami)/.config/skhd/window_cycling_backward.sh
 cmd - k : bash /Users/$(whoami)/.config/skhd/window_cycling_forward.sh
 cmd - space : bash /Users/$(whoami)/.config/skhd/layout_cycling.sh
+cmd + shift - c : bash /Users/$(whoami)/.config/skhd/kill_window.sh
 
 # swap managed window
 cmd - return : yabai -m window --swap west 
 
-cmd + shift - c : yabai -m window --close && bash /Users/$(whoami)/.config/skhd/window_cycling_backward.sh
 # layouts
 cmd - b : open -a "Google Chrome" -n
 
-cmd + shift - return : /Applications/Kitty.app/Contents/MacOS/kitty ~
+cmd + shift - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
 # float / unfloat window and center on screen
 cmd + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
