@@ -10,3 +10,6 @@
     src: '{{ ansible_env.HOME }}/dotfiles/yabai'
     dest: '{{ ansible_env.HOME }}/.config/yabai'
     state: link
+- name: Chown undo folder to yourself
+  ansible.builtin.shell:
+    cmd: chown -R $USER '{{ anisble_env.HOME }}/.local/state/nvim/undo'

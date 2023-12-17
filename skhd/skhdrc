@@ -1,4 +1,6 @@
 # Uses bash
+# Better to use bash because i have no bash configs and it can start the fastest
+# compared to fish which sources `config.fish` which will cause it to be slower
 
 # focus window
 cmd - j : bash /Users/$(whoami)/.config/skhd/window_cycling_backward.sh

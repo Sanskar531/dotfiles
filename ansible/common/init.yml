@@ -1,0 +1,39 @@
+- name: Ensure .config folder exists:
+  ansible.builtin.file:
+    path: '{{ ansible_env.HOME }}/.config'
+    state: directory
+- name: Ensure fish folder exists:
+  ansible.builtin.file:
+    path: '{{ ansible_env.HOME }}/.config/fish'
+    state: directory
+- name: Symlink starship
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/starship.toml'
+    dest: '{{ ansible_env.HOME }}/.config/starship.toml'
+    state: link
+- name: Symlink fish
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/config.fish'
+    dest: '{{ ansible_env.HOME }}/.config/fish/config.fish'
+    state: link
+- name: Symlink alacritty
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/alacritty'
+    dest: '{{ ansible_env.HOME }}/.config/alacritty'
+    state: link
+- name: Install and configure neovim
+  include_tasks: ../nvim/init.yml
+- name: Symlink tmux
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/.tmux.conf'
+    dest: '{{ ansible_env.HOME }}/.tmux.conf'
+    state: link
+- name: Install fisher
+  ansible.builtin.shell:
+    cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+- name: Install pyenv
+  ansible.builtin.shell:
+    cmd: curl https://pyenv.run | bash
+- name: Install pyenv virtualenv
+  ansible.builtin.shell:
+    cmd: git clone https://github.com/pyenv/pyenv-virtualenv.git (pyenv root)/plugins/pyenv-virtualenv
