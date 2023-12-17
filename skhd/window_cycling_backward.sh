@@ -1,7 +1,7 @@
-set layout_type (yabai -m query --spaces --space | jq '.type' | string trim -c '"')
+layout_type=`yabai -m query --spaces --space | jq '.type' | sed 's/"//g'`
 
-if test $layout_type = "stack"
+if [[ $layout_type = "stack" ]]; then
   yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 else
   yabai -m window --focus prev || yabai -m window --focus last
-end
+fi

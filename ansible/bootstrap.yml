@@ -23,6 +23,7 @@
           - neofetch
           - starship
           - fish
+          - pipx
         state: present
     - name: MacOS Dependencies
       include_tasks: ./mac.yml
@@ -30,6 +31,14 @@
     - name: Install additional packages for Linux
       include_tasks: ./linux.yml
       when: ansible_facts['os_family'] == 'Archlinux'
+    - name: Ensure .config folder exists:
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config'
+        state: directory
+    - name: Ensure fish folder exists:
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/fish'
+        state: directory
     - name: Install Packer for neovim
       git:
         repo: 'https://github.com/wbthomason/packer.nvim'
@@ -63,3 +72,12 @@
     - name: Install neovim configs
       ansible.builtin.shell:
         cmd: is_bootstrap=true nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    - name: Install fisher
+      ansible.builtin.shell:
+        cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+    - name: Install pyenv
+      ansible.builtin.shell:
+        cmd: curl https://pyenv.run | bash
+    - name: Install pyenv virtualenv
+      ansible.builtin.shell:
+        cmd: git clone https://github.com/pyenv/pyenv-virtualenv.git (pyenv root)/plugins/pyenv-virtualenv

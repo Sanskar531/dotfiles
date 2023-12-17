@@ -1,14 +1,13 @@
 # focus window
-cmd - j : fish /Users/$(whoami)/.config/skhd/window_cycling_backward.fish
-cmd - k : fish /Users/$(whoami)/.config/skhd/window_cycling_forward.fish
+cmd - j : bash /Users/$(whoami)/.config/skhd/window_cycling_backward.sh
+cmd - k : bash /Users/$(whoami)/.config/skhd/window_cycling_forward.sh
+cmd - space : bash /Users/$(whoami)/.config/skhd/layout_cycling.sh
 
 # swap managed window
 cmd - return : yabai -m window --swap west 
 
-cmd + shift - c : yabai -m window --close && fish /Users/$(whoami)/.config/skhd/window_cycling_backward.fish
-cmd + shift - c : yabai -m window --close && fish /Users/$(whoami)/.config/skhd/window_cycling_backward.fish
+cmd + shift - c : yabai -m window --close && bash /Users/$(whoami)/.config/skhd/window_cycling_backward.sh
 # layouts
-cmd - space : fish /Users/$(whoami)/.config/skhd/layout_cycling.fish
 cmd - b : open -a "Google Chrome" -n
 
 cmd + shift - return : /Applications/Kitty.app/Contents/MacOS/kitty ~
