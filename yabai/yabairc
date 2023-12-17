@@ -26,4 +26,4 @@ yabai -m config                                 \
     mouse_action2                resize         \
     mouse_drop_action            swap
 
-echo "yabai configuration loaded.."
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"

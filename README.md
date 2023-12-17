@@ -13,6 +13,7 @@ These are my dotfiles. I mainly use nvim as my editor, Xmoand as my wm, tmux for
 - [ ] Add Sketchybar
 - [ ] Add pyenv + pyenv virtualenv + nvm + node
 - [ ] Nerd fonts
+- [ ] Build alacritty from source
 
 ---
 
