@@ -45,7 +45,7 @@ main = do
             startupHook = myStartupHook
           }
         `additionalKeys` [ ((mod1Mask, xK_b), spawn "google-chrome-stable"),
-                           ((mod1Mask, xK_s), unGrab *> spawn "scrot -s ~/screenshots/%b%d::%H%M%S.png"),
+                           ((mod1Mask, xK_s), spawn "flameshot gui"),
                            ((mod1Mask, xK_Q), spawn "pkill X"),
                            ((mod1Mask, xK_x), spawn "xsecurelock"),
                            ((mod1Mask, xK_p), spawn "rofi -show run")
