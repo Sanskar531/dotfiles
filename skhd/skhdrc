@@ -21,8 +21,8 @@ cmd + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 # in bash
 cmd - s : screencapture -i ~/screenshots/$(date -Iseconds).png
 cmd - f : screencapture -m ~/screenshots/$(date -Iseconds).png
-cmd - h : yabai -m window --resize left:-60:0
-cmd - l : yabai -m window --resize left:60:0
+cmd - h : yabai -m window --resize left:-60:0 || yabai -m window --resize right:-60:0
+cmd - l : yabai -m window --resize left:60:0 || yabai -m window --resize right:60:0
 
 cmd + shift - 1 : yabai -m window --space 1
 cmd + shift - 2 : yabai -m window --space 2

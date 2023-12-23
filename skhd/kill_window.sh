@@ -6,6 +6,4 @@ else
   yabai -m window --close
 fi
 
-if [[ $layout_type == "bsp" ]]; then
-  /Users/$(whoami)/.config/skhd/window_cycling_backward.sh
-fi
+/Users/$(whoami)/.config/skhd/window_cycling_backward.sh
