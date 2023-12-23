@@ -10,6 +10,7 @@
       - flameshot
       - feh
       - ffmpeg
+      - nemo
     state: present
 - name: Symlink X11
   file:
