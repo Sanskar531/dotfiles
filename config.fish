@@ -1,42 +1,38 @@
-# Path variables for unix
-switch (uname)
-  case Linux
-    fish_add_path /home/(whoami)/.yarn/bin
-    fish_add_path /usr/local/go/bin
-    fish_add_path /home/(whoami)/go/bin
-    fish_add_path /home/(whoami)/.nvm/**/bin/
-
-    if status is-login
-      if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec startx
-      end
-    end
-  case Darwin
-    # Update path for fish
-    # Bins are installed using brew for mac os configs
-    fish_add_path /opt/homebrew/bin
+if status is-login
+  if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+    exec startx
+  end
 end
 
-# Start zoxide and starship
-zoxide init fish | source
-starship init fish | source
+if status --is-interactive
+  # Path variables for unix
+  switch (uname)
+    case Linux
+      fish_add_path /home/(whoami)/.yarn/bin
+      fish_add_path /usr/local/go/bin
+      fish_add_path /home/(whoami)/go/bin
 
-# Setup fish bindings
-fish_vi_key_bindings
-bind -M insert jj 'set fish_bind_mode default; commandline -f backward-char force-repaint'
-bind -M insert \cn accept-autosuggestion
-bind -M default \cn accept-autosuggestion
-set fish_greeting
-bind -M default A 'set fish_bind_mode insert; commandline -f end-of-buffer'
+    case Darwin
+      # Update path for fish
+      # Bins are installed using brew for mac os configs
+      fish_add_path /opt/homebrew/bin
+  end
 
-function nvm
-  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+  # Start zoxide and starship
+  zoxide init fish | source
+  starship init fish | source
+
+  # Setup fish bindings
+  fish_vi_key_bindings
+  bind -M insert jj 'set fish_bind_mode default; commandline -f backward-char force-repaint'
+  bind -M insert \cn accept-autosuggestion
+  bind -M default \cn accept-autosuggestion
+  set fish_greeting
+  bind -M default A 'set fish_bind_mode insert; commandline -f end-of-buffer'
+
+  set -Ux PYENV_ROOT $HOME/.pyenv
+  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  pyenv init - | source
+
+  pyenv virtualenv-init - | source
 end
-
-set -Ux PYENV_ROOT $HOME/.pyenv
-set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-pyenv init - | source
-
-status --is-interactive; and pyenv virtualenv-init - | source
-
-nvm use 20 > /dev/null

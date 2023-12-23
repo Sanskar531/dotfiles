@@ -14,7 +14,7 @@ font:
   bold_italic:
     family: FiraMono Nerd Font
     style: Bold Italic
-  size: 16
+  size: 10
 
 colors:
   # Default colors
@@ -48,9 +48,6 @@ colors:
     cyan: '0x39c5cf'
     white: '0xd9dee3'
 
-shell:
-  program: /opt/homebrew/bin/fish
-
 env:
   TERM: xterm-256color
 
@@ -60,4 +57,4 @@ window:
     x: 0
     y: 0
 
-  decorations: buttonless
+  decorations: None

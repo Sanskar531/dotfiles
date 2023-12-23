@@ -1,14 +1,17 @@
 - name: Install arch dependencies
+  become: yes
   ansible.builtin.package:
-    - iwd
-    - ly
-    - polybar
-    - xmonad
-    - xmonad-contrib
-    - picom
-    - scrot
-    - feh
-    - ffmpeg
+    name:
+      - iwd
+      - ly
+      - polybar
+      - xmonad
+      - xmonad-contrib
+      - picom
+      - scrot
+      - feh
+      - ffmpeg
+    state: present
 - name: Symlink X11
   file:
     src: '{{ ansible_env.HOME }}/dotfiles/.xinitrc'

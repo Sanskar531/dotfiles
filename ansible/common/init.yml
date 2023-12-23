@@ -1,8 +1,8 @@
-- name: Ensure .config folder exists:
+- name: Ensure .config folder exists
   ansible.builtin.file:
     path: '{{ ansible_env.HOME }}/.config'
     state: directory
-- name: Ensure fish folder exists:
+- name: Ensure fish folder exists
   ansible.builtin.file:
     path: '{{ ansible_env.HOME }}/.config/fish'
     state: directory
@@ -28,12 +28,21 @@
     src: '{{ ansible_env.HOME }}/dotfiles/.tmux.conf'
     dest: '{{ ansible_env.HOME }}/.tmux.conf'
     state: link
+- name: Check is fisher installed
+  ansible.builtin.shell: test -e {{ ansible_env.HOME }}/.config/fish/functions/fisher.fish
+  register: is_fisher_installed
 - name: Install fisher
   ansible.builtin.shell:
-    cmd: curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+    cmd: fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
+  when: is_fisher_installed.rc == '0'
+- name: Check is pyenv installed
+  ansible.builtin.shell: command -v pyenv
+  register: is_pyenv_installed
 - name: Install pyenv
   ansible.builtin.shell:
     cmd: curl https://pyenv.run | bash
+  when: is_pyenv_installed.rc == '0'
 - name: Install pyenv virtualenv
   ansible.builtin.shell:
-    cmd: git clone https://github.com/pyenv/pyenv-virtualenv.git (pyenv root)/plugins/pyenv-virtualenv
+    cmd: git clone https://github.com/pyenv/pyenv-virtualenv.git `pyenv root`/plugins/pyenv-virtualenv
+  when: is_pyenv_installed.rc == '0'

@@ -2,11 +2,8 @@
   hosts: localhost
   become: no
   tasks:
-    - name: Clone repo
-      git:
-        repo: 'https://github.com/Sanskar531/dotfiles.git'
-        dest: '{{ ansible_env.HOME }}/dotfiles'
     - name: Install packages
+      become: yes
       ansible.builtin.package:
         name:
           - neovim
@@ -23,7 +20,6 @@
           - neofetch
           - starship
           - fish
-          - pipx
         state: present
     - name: Common Dependencies
       include_tasks: ./common/init.yml
