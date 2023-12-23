@@ -1,0 +1,10 @@
+cmd open-nvim ${{
+	nvim -c 'cd $f' $f
+}}
+
+map d
+map dd delete
+map r
+map R rename
+map n
+map <c-n> open-nvim
