@@ -14,7 +14,7 @@ font:
   bold_italic:
     family: FiraMono Nerd Font
     style: Bold Italic
-  size: 10
+  size: 14
 
 colors:
   # Default colors
@@ -51,10 +51,13 @@ colors:
 env:
   TERM: xterm-256color
 
+shell:
+  program: fish
+
 window:
   dynamic_padding: true
   padding:
     x: 0
     y: 0
 
-  decorations: None
+  decorations: buttonless

@@ -1,0 +1,8 @@
+sketchybar --bar \
+    height=37 \
+    color=0xff0a0c10 \
+    margin=0 \
+    sticky=on \
+    padding_left=23 \
+    padding_right=23 \
+    notch_width=188 \
