@@ -1,11 +1,7 @@
 use clap::Parser;
 use serde_derive::Deserialize;
 use std::process::Command;
-use std::{
-    collections::VecDeque,
-    fs::File,
-    io::Read,
-};
+use std::{collections::VecDeque, fs::File, io::Read};
 
 #[derive(Parser, Debug)]
 struct Args {
@@ -18,6 +14,12 @@ struct WindowInfo {
     id: u16,
     #[serde(alias = "split-child")]
     split_child: String,
+    frame: Frame,
+}
+
+#[derive(Deserialize, Debug, Copy, Clone)]
+struct Frame {
+    w: f32,
 }
 
 fn main() {
@@ -32,28 +34,44 @@ fn main() {
             return;
         }
 
-        let mut order: VecDeque<u16> = VecDeque::new();
+        let mut order: VecDeque<(u16, Frame)> = VecDeque::new();
         let window_info: Vec<WindowInfo> = serde_json::from_str(file_contents.as_str()).unwrap();
+        let mut total_width: f32 = 0.0;
 
         for info in window_info {
             if info.split_child == "first_child" {
-                order.push_front(info.id);
+                order.push_front((info.id, info.frame));
+                total_width += info.frame.w;
             } else if info.split_child == "second_child" {
-                order.push_back(info.id);
+                order.push_back((info.id, info.frame));
+                total_width += info.frame.w;
             }
         }
 
-        for window_id in order {
-            warp_into_space(window_id);
-        }
+        restore_state(order, total_width / 2.0);
     } else {
         println!("Couldn't open file.");
     }
 }
 
-fn warp_into_space(id: u16) {
-    Command::new("yabai")
-        .args(["-m", "window", &id.to_string().as_str(), "--warp", "next"])
-        .output()
-        .unwrap();
+fn restore_state(order: VecDeque<(u16, Frame)>, mid_width: f32) {
+    for (idx, (window_id, frame)) in order.iter().enumerate() {
+        let mut cmd = Command::new("yabai");
+
+        cmd.args([
+            "-m",
+            "window",
+            &window_id.to_string().as_str(),
+            "--warp",
+            "next"
+        ]);
+
+        if idx == 1 {
+            let offset = mid_width - frame.w;
+
+            cmd.args(["--resize", format!("left:{}:0", offset).as_str()]);
+        }
+
+        cmd.output().unwrap();
+    }
 }
