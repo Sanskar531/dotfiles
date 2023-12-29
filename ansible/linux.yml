@@ -11,6 +11,8 @@
       - feh
       - ffmpeg
       - nemo
+      - greetd
+      - tuigreet
     state: present
 - name: Symlink X11
   file:
@@ -31,4 +33,10 @@
   file:
     src: '{{ ansible_env.HOME }}/dotfiles/lf'
     dest: '{{ ansible_env.HOME }}/.config/lf'
+    state: link
+- name: Symlink greetd
+  become: yes
+  file:
+    src: '{{ ansible_env.HOME }}/dotfiles/greetd'
+    dest: '/etc/greetd'
     state: link
