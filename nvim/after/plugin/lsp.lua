@@ -63,7 +63,6 @@ local ngls_cmd = {
 local servers = {
   ruff_lsp = {},
   rust_analyzer = {},
-  pyright = {},
   tsserver = {
     root_dir = [[util.root_pattern("package.json")]]
   },

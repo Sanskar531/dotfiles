@@ -46,7 +46,8 @@ main = do
           }
         `additionalKeys` [ ((mod1Mask, xK_b), spawn "google-chrome-stable"),
                            ((mod1Mask, xK_s), spawn "flameshot gui"),
-                           ((mod1Mask, xK_Q), spawn "pkill X"),
                            ((mod1Mask, xK_x), spawn "xsecurelock"),
-                           ((mod1Mask, xK_p), spawn "rofi -show run")
+                           ((mod1Mask, xK_p), spawn "rofi -show run"),
+                           ((mod1Mask, xK_r), spawn "ffmpeg -f x11grab -framerate 60 -video_size 3440x1440 -i $DISPLAY -threads 8 ~/screenrecords/`date +'%d-%m-%y-%T'`.mp4"),
+                           ((mod1Mask .|. shiftMask, xK_r), spawn "killall ffmpeg")
         ]
