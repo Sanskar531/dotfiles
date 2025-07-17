@@ -23,10 +23,4 @@ if status --is-interactive
   bind -M default \cn accept-autosuggestion
   set fish_greeting
   bind -M default A 'set fish_bind_mode insert; commandline -f end-of-buffer'
-
-  set -Ux PYENV_ROOT $HOME/.pyenv
-  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-  pyenv init - | source
-
-  pyenv virtualenv-init - | source
 end

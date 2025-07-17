@@ -1,6 +1,7 @@
 require("plugins");
 require("set");
 require("remap");
+require("lsps");
 
 vim.loader.enable();
 

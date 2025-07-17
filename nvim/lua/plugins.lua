@@ -1,5 +1,3 @@
-local is_bootstrap = os.getenv("is_bootstrap")
-
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
@@ -13,9 +11,6 @@ require('packer').startup(function(use)
 
       -- Useful status updates for LSP
       {'j-hui/fidget.nvim'},
-
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
     },
   }
 
@@ -50,7 +45,12 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('ibl').setup()
+    end
+  }-- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
   use 'folke/zen-mode.nvim'
@@ -65,17 +65,6 @@ require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
+
+  use 'ziglang/zig.vim'
 end)
-
--- If bootstrap don't load plugins
-if is_bootstrap then
-  return
-end
-
--- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
-})

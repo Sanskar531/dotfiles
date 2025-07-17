@@ -20,7 +20,6 @@ cmd + shift - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 cmd + shift - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 # in bash
 cmd - s : screencapture -i ~/screenshots/$(date -Iseconds).png
-cmd - f : screencapture -m ~/screenshots/$(date -Iseconds).png
 cmd - h : yabai -m window --resize left:-60:0 || yabai -m window --resize right:-60:0
 cmd - l : yabai -m window --resize left:60:0 || yabai -m window --resize right:60:0
 
@@ -33,3 +32,6 @@ cmd + shift - 6 : yabai -m window --space 6
 cmd + shift - 7 : yabai -m window --space 7
 cmd + shift - 8 : yabai -m window --space 8
 cmd + shift - 9 : yabai -m window --space 9
+
+cmd + shift - tab : bash /Users/$(whoami)/.config/skhd/move_to_non_active_display.sh
+cmd - tab : bash /Users/$(whoami)/.config/skhd/focus_non_active_display.sh
